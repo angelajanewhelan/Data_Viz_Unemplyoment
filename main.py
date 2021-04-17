@@ -7,6 +7,8 @@ df = pd.read_csv(r"C:\Users\angel\Downloads\unemploymentdatacsv.csv")
 print(df.head())
 print(df.shape)
 print(df.count)
+plt.hist(df["Year"])
+plt.show()
 df_education = ["Primary_School", "High_School", "Associates_Degree"]
 print(df_education)
 df_education.append("Professional_Degree")
