@@ -6,15 +6,8 @@ import numpy as np
 df = pd.read_csv(r"C:\Users\angel\Downloads\unemploymentdatacsv.csv")
 print(df.head())
 print(df.shape)
-print(df.count)
 plt.hist(df["Year"])
 plt.show()
-df_education = ["Primary_School", "High_School", "Associates_Degree"]
-print(df_education)
-df_education.append("Professional_Degree")
-print(df_education)
-df['Person'] = df['Men'] + df['Women']
-print(df)
 df['POC'] = df['Black'] + df['Asian'] + df["Hispanic"]
 print(df)
 round(df["Women"].mean())
@@ -42,13 +35,11 @@ averages = [ave_women, ave_men, ave_asian, ave_white, ave_black, ave_hispanic, a
 print(averages)
 print(averages.index(8))
 np_averages = np.array(averages)
-np_averages > 5
+var = np_averages > 5
 df_index = df.set_index("Year")
 print(df_index)
 df.sort_index()
 print(df.fillna(0))
-df_average_by_Year = df.groupby("Year")["Women"].mean()
-print(df_average_by_Year)
 for Year, row in df.iterrows():
     print(row["Women"])
 if "Women" < "Men":
@@ -65,8 +56,6 @@ else:
     print(False)
 if "Professional_Degree" == "Associates_Degree":
     print (True)
-elif "Professional_Degree" < "Associates_Degree":
-    print((UnTrue))
 else:
     print(False)
 df_average_by_Year_Women = df.groupby("Year")["Women"].mean()
@@ -75,15 +64,11 @@ df_average_by_Year_Women.plot(kind="bar", title="Mean of Women")
 plt.show()
 df_average_by_Year_Men = df.groupby("Year")["Men"].mean()
 print(df_average_by_Year_Men)
-df_average_by_Year.plot(kind="bar", title="Mean of Men")
-plt.show()
-df_average_by_Year_Person = df.groupby("Year")["Person"].mean()
-print(df_average_by_Year_Person)
-df_average_by_Year_Person.plot(kind="bar", title="Mean of Person")
+df_average_by_Year_Men.plot(kind="bar", title="Mean of Men")
 plt.show()
 df_average_by_Year_Asian = df.groupby("Year")["Asian"].mean()
 print(df_average_by_Year_Asian)
-df_average_by_Year_Asian.plot(kind="bar", title="Mean of Asiann")
+df_average_by_Year_Asian.plot(kind="bar", title="Mean of Asian")
 plt.show()
 df_average_by_Year_Black = df.groupby("Year")["Black"].mean()
 print(df_average_by_Year_Black)
@@ -117,4 +102,15 @@ df_average_by_Year_Professional_Degree = df.groupby("Year")["Professional_Degree
 print(df_average_by_Year_Professional_Degree)
 df_average_by_Year_Professional_Degree.plot(kind="bar", title="Mean of Professional_Degree")
 plt.show()
-
+x = df['Year'].tail(3)
+y1 = df['Women'].tail(3)
+y2 = df['Men'].tail(3)
+sns.lineplot(x=x,y=y1)
+sns.lineplot(x=x,y=y2)
+plt.show()
+x = df['Year'].head(3)
+y1 = df["Women"].head(3)
+y2 = df['Men'].head(3)
+sns.lineplot(x=x,y=y1)
+sns.lineplot(x=x,y=y2)
+plt.show()
